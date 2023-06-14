@@ -1,0 +1,11 @@
+from machine import UART, Pin
+import time, utime
+
+uart = UART(0, baudrate=9600, tx=Pin(0), rx=Pin(1), timeout=1)
+
+while True:
+    line = uart.readline()
+    if line is not None:
+        line = line.decode('utf-8')  # Decode bytes to string
+        if len(line) == 2: 
+            print(line)
